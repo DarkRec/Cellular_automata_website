@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Automat</title>
+    <script>console.warn = () => { };</script>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <script type="text/javascript" src='jQuery.js'></script>
+    <script type="text/javascript" src='js/Tabs.js'></script>
+    <script type="text/javascript" src='js/Game.js'></script>
+    <script type="text/javascript" src='js/Main.js'></script>
+    <script type="text/javascript" src='js/Ui.js'></script>
+    <script type="text/javascript" src='js/Box.js'></script>
+    <script type="text/javascript" src='js/Board.js'></script>
+    <link type="text/css" rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <section id="menu">
+        <div class="topnav">
+            <a class="home" href="#home">Home</a>
+            <a href="#a">TU</a>
+            <a href="#b">COŚ</a>
+            <a href="#c">BĘDZIE</a>
+        </div>
+    </section>
+    <section id="content">
+        <main id="main"></main>
+        <div id="control">
+        </div>
+    </section>
+</body>
+
+<script>
+    $(document).ready(function () {
+        $("#main")[0].style.width = (board.box_side + 2 * board.padding + 2) * board.size_y - 2 + "px"
+        $("#main")[0].style.height = (board.box_side + 2 * board.padding + 2) * board.size_x - 2 + "px"
+
+        $("#control")[0].style.left = (board.box_side + 2 * board.padding + 2) * board.size_y + 48 + "px"
+        board.pageload()
+    })
+</script>
+
+</html>

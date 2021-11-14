@@ -50,7 +50,7 @@ body {
     left:10px;
     float: left;
     position: absolute;
-    border:3px solid deepskyblue;
+    border:3px solid #00bfff;
 }
 .box {
     /*border: 2px solid white;*/
@@ -61,7 +61,7 @@ body {
     background-color: darkgray;
 }
 
-#controll {
+#control {
     width: 200px;
     position: absolute;
 }
