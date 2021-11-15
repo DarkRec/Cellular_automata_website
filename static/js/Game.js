@@ -16,8 +16,8 @@ class Game {
                 var box_y = (game.boxes[key].id).split("_")[2]
                 game.von_neumann(box_x, box_y, board.size_x, board.size_y, tabs.tab)
             }
-            tabs.tab = [...tabs.new_tab]
-            tabs.new_tab = [...tabs.zero]
+            tabs.tab = tabs.new_tab
+            tabs.new_tab = tabs.zero
 
             var randomColor = Math.floor(Math.random() * 16777215).toString(16);
             game.draw("#" + randomColor)
@@ -59,11 +59,10 @@ class Game {
 
     draw(color) {
         game.tick++
-        if (game.tick == 700) {
+        if (game.tick == 750) {
             tabs.tab = tabs.glider_gun
             game.tick = 0
         }
-        console.log(game.tick)
         for (var key = 0; key < board.size_x * board.size_y; key++) {
             var box_x = (game.boxes[key].id).split("_")[1]
             var box_y = (game.boxes[key].id).split("_")[2]

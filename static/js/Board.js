@@ -11,14 +11,9 @@ class Board {
     }
 
     pageload() {
-        var padding = board.padding
-        var box_side = game.box_side
-        var size_x = game.size_x
-        var size_y = game.size_y
-
         board.create(board.size_x, board.size_y, board.box_side)
 
-        tabs.tab = [...tabs.glider_gun]
+        tabs.tab = tabs.glider_gun
         game.draw("white")
     }
 

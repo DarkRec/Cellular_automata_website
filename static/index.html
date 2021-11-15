@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Automat</title>
-    <script>console.warn = () => { };</script>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <script type="text/javascript" src='jQuery.js'></script>
     <script type="text/javascript" src='js/Tabs.js'></script>
@@ -33,10 +32,12 @@
         <div id="control">
         </div>
     </section>
+    <audio src='/music/nyan_cat.mp3' id='audio' loop></audio>
 </body>
 
 <script>
     $(document).ready(function () {
+
         $("#main")[0].style.width = (board.box_side + 2 * board.padding + 2) * board.size_y - 2 + "px"
         $("#main")[0].style.height = (board.box_side + 2 * board.padding + 2) * board.size_x - 2 + "px"
 
