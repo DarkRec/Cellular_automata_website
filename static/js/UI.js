@@ -46,11 +46,10 @@ class Ui {
         })
         button.on("click", function () {
             $("#audio")[0].pause()
-            game.play = false
-            tabs.tab = tabs.glider_gun
-            game.draw("white")
+            net.Load("glider_gun")
         })
         $("#control").append(button)
+
 
         var button = $(document.createElement('button')).prop({
             type: 'button',
@@ -59,9 +58,18 @@ class Ui {
         })
         button.on("click", function () {
             $("#audio")[0].pause()
-            game.play = false
-            tab.stab = tabs.clear
-            draw("white")
+            net.Load("empty")
+        })
+        $("#control").append(button)
+
+
+        var button = $(document.createElement('button')).prop({
+            type: 'button',
+            innerHTML: 'Export',
+            id: 'export'
+        })
+        button.on("click", function () {
+            net.Save()
         })
         $("#control").append(button)
     }

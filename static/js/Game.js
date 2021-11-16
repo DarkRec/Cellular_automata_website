@@ -48,7 +48,7 @@ class Game {
             tabs.new_tab[x][y] = 1
 
         } else if (tab[x][y] == 1) {
-            if (suma < 2 || suma > 3) {
+            if (suma == 1 || suma > 3) {
                 tabs.new_tab[x][y] = 0
             } else {
                 tabs.new_tab[x][y] = 1

@@ -8,14 +8,16 @@
 
     <title>Automat</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link type="text/css" rel="stylesheet" href="css/styles.css">
+    <link type="text/css" rel="stylesheet" href="css/checkboxes.css">
     <script type="text/javascript" src='jQuery.js'></script>
+    <script type="text/javascript" src='js/Net.js'></script>
     <script type="text/javascript" src='js/Tabs.js'></script>
     <script type="text/javascript" src='js/Game.js'></script>
     <script type="text/javascript" src='js/Main.js'></script>
     <script type="text/javascript" src='js/Ui.js'></script>
     <script type="text/javascript" src='js/Box.js'></script>
     <script type="text/javascript" src='js/Board.js'></script>
-    <link type="text/css" rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
@@ -31,6 +33,28 @@
         <main id="main"></main>
         <div id="control">
         </div>
+    </section>
+    <section id="checkboxes">
+        <form action="/team_name_url/" method="post">
+            <label id="rules" for="team_name">Zasady sąsiedztwa: </label></br>
+            <input type="checkbox" id="checkbox1" class="css-checkbox" checked="checked">
+            <label for="checkbox1" class="css-label dark-check-cyan">1</label>
+            <input type="checkbox" id="checkbox5" class="css-checkbox" checked="checked">
+            <label for="checkbox5" class="css-label dark-check-cyan">5</label></br>
+            <input type="checkbox" id="checkbox2" class="css-checkbox" checked="checked">
+            <label for="checkbox2" class="css-label dark-check-cyan">2</label>
+            <input type="checkbox" id="checkbox6" class="css-checkbox" checked="checked">
+            <label for="checkbox6" class="css-label dark-check-cyan">6</label></br>
+            <input type="checkbox" id="checkbox3" class="css-checkbox" checked="checked">
+            <label for="checkbox3" class="css-label dark-check-cyan">3</label>
+            <input type="checkbox" id="checkbox7" class="css-checkbox" checked="checked">
+            <label for="checkbox7" class="css-label dark-check-cyan">7</label></br>
+            <input type="checkbox" id="checkbox4" class="css-checkbox" checked="checked">
+            <label for="checkbox4" class="css-label dark-check-cyan">4</label>
+            <input type="checkbox" id="checkbox8" class="css-checkbox" checked="checked">
+            <label for="checkbox8" class="css-label dark-check-cyan">8</label></br>
+        </form>
+
     </section>
     <audio src='/music/nyan_cat.mp3' id='audio' loop></audio>
 </body>
