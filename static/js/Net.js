@@ -1,6 +1,5 @@
 class Net {
     constructor() {
-
     }
     Save() {
         $.ajax({
@@ -30,6 +29,35 @@ class Net {
                 tabs.tab = data
                 game.draw("white")
                 console.log("loading")
+            },
+            error: function (xhr, status, error) {
+                console.log(xhr);
+            },
+        });
+    }
+
+    RulesLoad() {
+        $.ajax({
+            url: "/rulesload",
+            data: {
+            },
+            type: "POST",
+            success: function (data) {
+            },
+            error: function (xhr, status, error) {
+                console.log(xhr);
+            },
+        });
+    }
+
+    RulesLoadtoCheckbox() {
+        $.ajax({
+            url: "/rulesloadtocheckbox",
+            data: {
+            },
+            type: "POST",
+            success: function (data) {
+                ui.checkbox_generate(data)
             },
             error: function (xhr, status, error) {
                 console.log(xhr);

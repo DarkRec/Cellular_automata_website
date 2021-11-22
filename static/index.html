@@ -35,24 +35,8 @@
         </div>
     </section>
     <section id="checkboxes">
-        <form action="/team_name_url/" method="post">
+        <form id="check_form" action="/team_name_url/" method="post">
             <label id="rules" for="team_name">Zasady sąsiedztwa: </label></br>
-            <input type="checkbox" id="checkbox1" class="css-checkbox" checked="checked">
-            <label for="checkbox1" class="css-label dark-check-cyan">1</label>
-            <input type="checkbox" id="checkbox5" class="css-checkbox" checked="checked">
-            <label for="checkbox5" class="css-label dark-check-cyan">5</label></br>
-            <input type="checkbox" id="checkbox2" class="css-checkbox" checked="checked">
-            <label for="checkbox2" class="css-label dark-check-cyan">2</label>
-            <input type="checkbox" id="checkbox6" class="css-checkbox" checked="checked">
-            <label for="checkbox6" class="css-label dark-check-cyan">6</label></br>
-            <input type="checkbox" id="checkbox3" class="css-checkbox" checked="checked">
-            <label for="checkbox3" class="css-label dark-check-cyan">3</label>
-            <input type="checkbox" id="checkbox7" class="css-checkbox" checked="checked">
-            <label for="checkbox7" class="css-label dark-check-cyan">7</label></br>
-            <input type="checkbox" id="checkbox4" class="css-checkbox" checked="checked">
-            <label for="checkbox4" class="css-label dark-check-cyan">4</label>
-            <input type="checkbox" id="checkbox8" class="css-checkbox" checked="checked">
-            <label for="checkbox8" class="css-label dark-check-cyan">8</label></br>
         </form>
 
     </section>
@@ -66,6 +50,7 @@
         $("#main")[0].style.height = (board.box_side + 2 * board.padding + 2) * board.size_x - 2 + "px"
 
         $("#control")[0].style.left = (board.box_side + 2 * board.padding + 2) * board.size_y + 48 + "px"
+        net.RulesLoadtoCheckbox()
         board.pageload()
     })
 </script>

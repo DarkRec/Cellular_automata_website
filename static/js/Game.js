@@ -48,7 +48,7 @@ class Game {
             tabs.new_tab[x][y] = 1
 
         } else if (tab[x][y] == 1) {
-            if (suma == 1 || suma > 3) {
+            if (suma < 2 || suma > 3) {
                 tabs.new_tab[x][y] = 0
             } else {
                 tabs.new_tab[x][y] = 1
@@ -58,11 +58,12 @@ class Game {
     }
 
     draw(color) {
+        /*
         game.tick++
         if (game.tick == 750) {
             tabs.tab = tabs.glider_gun
             game.tick = 0
-        }
+        }*/
         for (var key = 0; key < board.size_x * board.size_y; key++) {
             var box_x = (game.boxes[key].id).split("_")[1]
             var box_y = (game.boxes[key].id).split("_")[2]

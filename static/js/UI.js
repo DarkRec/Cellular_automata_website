@@ -73,4 +73,43 @@ class Ui {
         })
         $("#control").append(button)
     }
+
+    checkbox_generate(arr) {
+        function compare(a, b) {
+            if (a.nr < b.nr) {
+                return -1;
+            }
+            if (a.nr > b.nr) {
+                return 1;
+            }
+            return 0;
+        }
+
+        arr.sort(compare);
+        for (var r = 0; r < 9; r++) {
+            console.log(arr[r])
+            var nr = arr[r].nr
+            var value = arr[r].value
+            var input = $(document.createElement('input')).prop({
+                type: 'checkbox',
+                id: 'checkbox' + nr,
+                class: 'css-checkbox',
+                checked: 'checked'
+            })
+            if (value != 'true')
+                input.prop({
+                    checked: ''
+                })
+            var label = $(document.createElement('label')).prop({
+                for: 'checkbox' + r,
+                class: 'css-label dark-check-cyan',
+                innerHTML: r
+            })
+            $("#check_form").append(input)
+            $("#check_form").append(label)
+
+            if (r % 3 == 2)
+                $("#check_form").append($(document.createElement('br')))
+        }
+    }
 }

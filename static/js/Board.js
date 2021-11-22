@@ -12,9 +12,7 @@ class Board {
 
     pageload() {
         board.create(board.size_x, board.size_y, board.box_side)
-
-        tabs.tab = tabs.glider_gun
-        game.draw("white")
+        net.Load("glider_gun")
     }
 
     create(size_x, size_y, bok) {

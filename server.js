@@ -10,7 +10,12 @@ var bodyParser = require('body-parser')
 var Datastore = require('nedb')
 
 var baza = new Datastore({
-	filename: 'levels.db',
+	filename: 'arrays.db',
+	autoload: true
+});
+
+rules = new Datastore({
+	filename: 'rules.db',
 	autoload: true
 });
 
@@ -46,6 +51,18 @@ app.post("/save", function (req, res) {
 app.post("/load", function (req, res) {
 	baza.find({ "nazwa": req.body.type }, function (err, docs) {
 		res.send(JSON.parse(JSON.stringify(docs))[0].tablica)
+	});
+})
+
+app.post("/rulesload", function (req, res) {
+	rules.find({}, function (err, docs) {
+		res.send(JSON.parse(JSON.stringify(docs)))
+	});
+})
+
+app.post("/rulesloadtocheckbox", function (req, res) {
+	rules.find({}, function (err, docs) {
+		res.send(JSON.parse(JSON.stringify(docs)))
 	});
 })
 
