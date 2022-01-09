@@ -1,0 +1,33 @@
+<nav>
+    <div id="mySidebar" class="sidebar">
+        <!--onmouseleave="closeNav()" -->
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <section id="control">
+        </section>
+        <!--a href="#">Start</a>
+        <a href="#">Stop</a>
+        <a href="#">Reset</a>
+        <a href="#">Clear</a>
+        <a href="#">Export</a-->
+        <div id="rules-sidebar">
+        </div>
+    </div>
+
+    <div id="main-sidebar" class="sidebar" onmouseover="openNav()">
+    </div>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+            document.getElementById("main-sidebar").style.width = "0px";
+
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("main-sidebar").style.width = "50px";
+            //          document.getElementById("main-sidebar").style.visibility = "hidden";
+
+        }
+    </script>
+</nav>

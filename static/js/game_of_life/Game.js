@@ -1,4 +1,4 @@
-console.log("wczytano plik Game.js")
+//console.log("wczytano plik Game.js")
 
 class Game {
 
@@ -6,8 +6,11 @@ class Game {
         this.size_x = 30
         this.size_y = 50
         this.play = false
-        this.boxes = $("#main")[0].children
+        this.boxes = $("#game_board")[0].children
         this.tick = 0
+        this.rules = {}
+        this.color = true
+        this.sound = false
     }
     start() {
         if (game.play) {
@@ -18,8 +21,10 @@ class Game {
             }
             tabs.tab = tabs.new_tab
             tabs.new_tab = tabs.zero
-
-            var randomColor = Math.floor(Math.random() * 16777215).toString(16);
+            if(game.color)
+                var randomColor = Math.floor(Math.random() * 16777215).toString(16);
+            else 
+            var randomColor = 'FFFFFF';
             game.draw("#" + randomColor)
             tabs.zero = new Array
 
@@ -34,21 +39,21 @@ class Game {
     }
 
     von_neumann(x, y, size_x, size_y, tab) {
-        var suma = (tab[(+x - 1 + size_x) % size_x][(+y + size_y) % size_y]
-            + tab[(+x + 1 + size_x) % size_x][(+y + size_y) % size_y]
-            + tab[(+x + size_x) % size_x][(+y + 1 + size_y) % size_y]
-            + tab[(+x + size_x) % size_x][(+y - 1 + size_y) % size_y]
-            + tab[(+x + 1 + size_x) % size_x][(+y + 1 + size_y) % size_y]
-            + tab[(+x + 1 + size_x) % size_x][(+y - 1 + size_y) % size_y]
-            + tab[(+x - 1 + size_x) % size_x][(+y + 1 + size_y) % size_y]
-            + tab[(+x - 1 + size_x) % size_x][(+y - 1 + size_y) % size_y])
+        var suma = (tab[(+x - 1 + size_x) % size_x][(+y + size_y) % size_y] +
+            tab[(+x + 1 + size_x) % size_x][(+y + size_y) % size_y] +
+            tab[(+x + size_x) % size_x][(+y + 1 + size_y) % size_y] +
+            tab[(+x + size_x) % size_x][(+y - 1 + size_y) % size_y] +
+            tab[(+x + 1 + size_x) % size_x][(+y + 1 + size_y) % size_y] +
+            tab[(+x + 1 + size_x) % size_x][(+y - 1 + size_y) % size_y] +
+            tab[(+x - 1 + size_x) % size_x][(+y + 1 + size_y) % size_y] +
+            tab[(+x - 1 + size_x) % size_x][(+y - 1 + size_y) % size_y])
 
         tabs.suma_tab[x][y] = suma
         if (tab[x][y] == 0 && suma == 3) {
             tabs.new_tab[x][y] = 1
 
         } else if (tab[x][y] == 1) {
-            if (suma < 2 || suma > 3) {
+            if (game.rules[suma] == 'false') {
                 tabs.new_tab[x][y] = 0
             } else {
                 tabs.new_tab[x][y] = 1

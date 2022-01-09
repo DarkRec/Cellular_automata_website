@@ -1,0 +1,32 @@
+<section id="main_content">
+    <main id="game_board"></main>
+</section>
+
+<!--section id="checkboxes">
+    <form id="check_form" action="/team_name_url/" method="post">
+        <label id="rules">Zasady sąsiedztwa: </label></br>
+        <label id="still_alive">Komórki żyją dalej</label></br>
+        <div id="rules_boxes">
+        </div>
+    </form>
+</section-->
+
+<section id="muza">
+    <audio src='/music/nyan_cat.mp3' id='audio' type='audio/mp3' loop></audio>
+</section>
+
+<script>
+    $(document).ready(function () {
+
+        $("#game_board")[0].style.width = (board.box_side) * board.size_y + "px"  //(board.box_side + 2 * board.padding + 2) * board.size_y - 2
+        $("#game_board")[0].style.height = (board.box_side) * board.size_x + "px"
+
+        $("#control")[0].style.left = (board.box_side + 2) * board.size_y + 48 + "px"
+        net.RulesLoadtoCheckbox()
+        board.pageload()
+        if($("#footer")[0].innerHTML=='')
+            net.Load("glider gun")
+        else
+            net.Load($("#footer")[0].innerHTML)
+    })
+</script>

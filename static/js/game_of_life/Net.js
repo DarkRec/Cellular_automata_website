@@ -1,11 +1,12 @@
 class Net {
-    constructor() {
-    }
+    constructor() { }
     Save() {
+        if($("#export_input")[0].value.trim() != ''){
         $.ajax({
             url: "/save",
             data: {
                 obj: JSON.stringify(tabs.tab),
+                name:$("#export_input")[0].value
             },
             type: "POST",
             success: function (data) {
@@ -15,6 +16,7 @@ class Net {
                 console.log(xhr);
             },
         });
+    }
     }
     Load(type) {
         $.ajax({
@@ -28,7 +30,6 @@ class Net {
                 game.play = false
                 tabs.tab = data
                 game.draw("white")
-                console.log("loading")
             },
             error: function (xhr, status, error) {
                 console.log(xhr);
@@ -36,13 +37,16 @@ class Net {
         });
     }
 
-    RulesLoad() {
+    RulesUpdate(nr, checked) {
         $.ajax({
-            url: "/rulesload",
+            url: "/rulesupdate",
             data: {
+                nr: nr,
+                checked: checked
             },
             type: "POST",
             success: function (data) {
+                game.rules = data
             },
             error: function (xhr, status, error) {
                 console.log(xhr);
@@ -53,11 +57,23 @@ class Net {
     RulesLoadtoCheckbox() {
         $.ajax({
             url: "/rulesloadtocheckbox",
-            data: {
-            },
+            data: {},
             type: "POST",
             success: function (data) {
                 ui.checkbox_generate(data)
+            },
+            error: function (xhr, status, error) {
+                console.log(xhr);
+            },
+        });
+    }
+
+    GameRules() {
+        $.ajax({
+            url: "/rulesloadtocheckbox",
+            data: {},
+            type: "POST",
+            success: function (data) {
             },
             error: function (xhr, status, error) {
                 console.log(xhr);

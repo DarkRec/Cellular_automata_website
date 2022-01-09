@@ -1,18 +1,17 @@
-console.log("wczytano plik Board.js")
+//console.log("wczytano plik Board.js")
 class Board {
 
     constructor() {
-        console.log("konstruktor klasy Board")
+        //console.log("konstruktor klasy Board")
 
-        this.box_side = 10
-        this.size_x = 30
-        this.size_y = 50
-        this.padding = 5
+        this.box_side = 10     //rozmiar komórki
+        this.size_x = 60
+        this.size_y = 100
+        //this.padding = 5
     }
 
     pageload() {
         board.create(board.size_x, board.size_y, board.box_side)
-        net.Load("glider_gun")
     }
 
     create(size_x, size_y, bok) {
@@ -28,7 +27,7 @@ class Board {
                 tabs.tab[x][y] = 0
 
                 var box = new Box(x, y, bok)
-                main.append(box.div)
+                game_board.append(box.div)
             }
         }
     }

@@ -1,0 +1,26 @@
+#container div {
+  height: 50px;
+  width: 120px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 22px;
+  border: #111;
+  display: inline-block;
+  text-align: center;
+  background-color: black;
+  color: deepskyblue;
+  margin: 20px;
+  width: 300px;
+}
+
+img {
+  width: 300px;
+}
+
+a {
+  text-align: left;
+}
+
+#container {
+  width: 1400px;
+  margin: auto;
+}
