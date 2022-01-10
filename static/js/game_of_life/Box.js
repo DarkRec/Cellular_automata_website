@@ -23,5 +23,23 @@ class Box {
                 tabs.tab[temp_x][temp_y] = 0
             }
         })
+        this.div.addEventListener("mouseenter", function () {
+            if (board.select) {
+                var temp_x = this.id.split("_")[1]
+                var temp_y = this.id.split("_")[2]
+                if (game.color == 'black') {
+                    if (tabs.tab[temp_x][temp_y] == 0) {
+                        this.click()
+                    }
+                }
+                else if (game.color == 'white')
+                    if (tabs.tab[temp_x][temp_y] == 1) {
+                        this.click()
+                    }
+            }
+        })
+        this.div.addEventListener("mousedown", function () {
+            game.color = this.style.backgroundColor
+        })
     }
 }

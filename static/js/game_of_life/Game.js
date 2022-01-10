@@ -3,14 +3,13 @@
 class Game {
 
     constructor() {
-        this.size_x = 30
-        this.size_y = 50
         this.play = false
         this.boxes = $("#game_board")[0].children
-        this.tick = 0
         this.rules = {}
         this.color = true
         this.sound = false
+        this.speed = 150
+        this.border_mode = false
     }
     start() {
         if (game.play) {
@@ -21,10 +20,10 @@ class Game {
             }
             tabs.tab = tabs.new_tab
             tabs.new_tab = tabs.zero
-            if(game.color)
+            if (game.color)
                 var randomColor = Math.floor(Math.random() * 16777215).toString(16);
-            else 
-            var randomColor = 'FFFFFF';
+            else
+                var randomColor = 'FFFFFF';
             game.draw("#" + randomColor)
             tabs.zero = new Array
 
@@ -34,19 +33,37 @@ class Game {
                     tabs.zero[x][y] = 0
                 }
             }
-            setTimeout(function () { game.start() }, 125);
+            setTimeout(function () { game.start() }, game.speed);
         }
     }
 
     von_neumann(x, y, size_x, size_y, tab) {
-        var suma = (tab[(+x - 1 + size_x) % size_x][(+y + size_y) % size_y] +
-            tab[(+x + 1 + size_x) % size_x][(+y + size_y) % size_y] +
-            tab[(+x + size_x) % size_x][(+y + 1 + size_y) % size_y] +
-            tab[(+x + size_x) % size_x][(+y - 1 + size_y) % size_y] +
-            tab[(+x + 1 + size_x) % size_x][(+y + 1 + size_y) % size_y] +
-            tab[(+x + 1 + size_x) % size_x][(+y - 1 + size_y) % size_y] +
-            tab[(+x - 1 + size_x) % size_x][(+y + 1 + size_y) % size_y] +
-            tab[(+x - 1 + size_x) % size_x][(+y - 1 + size_y) % size_y])
+        x = parseInt(x)
+        y = parseInt(y)
+
+        if (game.border_mode) {
+            var suma = 0;
+            try { suma += tab[x + 1][y] } catch { }
+            try { suma += tab[x - 1][y] } catch { }
+            try { suma += tab[x][y + 1] } catch { }
+            try { suma += tab[x][y - 1] } catch { }
+            try { suma += tab[x + 1][y + 1] } catch { }
+            try { suma += tab[x + 1][y - 1] } catch { }
+            try { suma += tab[x - 1][y + 1] } catch { }
+            try { suma += tab[x - 1][y - 1] } catch { }
+        }
+        else {
+            var suma = (
+                tab[(x - 1 + size_x) % size_x][(y + size_y) % size_y] +
+                tab[(x + 1 + size_x) % size_x][(y + size_y) % size_y] +
+                tab[(x + size_x) % size_x][(y + 1 + size_y) % size_y] +
+                tab[(x + size_x) % size_x][(y - 1 + size_y) % size_y] +
+                tab[(x + 1 + size_x) % size_x][(y + 1 + size_y) % size_y] +
+                tab[(x + 1 + size_x) % size_x][(y - 1 + size_y) % size_y] +
+                tab[(x - 1 + size_x) % size_x][(y + 1 + size_y) % size_y] +
+                tab[(x - 1 + size_x) % size_x][(y - 1 + size_y) % size_y]
+            )
+        }
 
         tabs.suma_tab[x][y] = suma
         if (tab[x][y] == 0 && suma == 3) {
@@ -63,12 +80,6 @@ class Game {
     }
 
     draw(color) {
-        /*
-        game.tick++
-        if (game.tick == 750) {
-            tabs.tab = tabs.glider_gun
-            game.tick = 0
-        }*/
         for (var key = 0; key < board.size_x * board.size_y; key++) {
             var box_x = (game.boxes[key].id).split("_")[1]
             var box_y = (game.boxes[key].id).split("_")[2]

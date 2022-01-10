@@ -89,8 +89,15 @@ input[type="text"]:focus {
 
 #sound {
   width: 30px;
-  margin-left: 30px;
+  margin-left: 22px;
   padding-bottom: 3px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+#border {
+  width: 30px;
+  margin-left: 18px;
   margin-bottom: 10px;
   cursor: pointer;
 }

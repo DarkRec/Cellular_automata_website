@@ -7,6 +7,8 @@ class Board {
         this.box_side = 10     //rozmiar komórki
         this.size_x = 60
         this.size_y = 100
+        this.select = false
+        this.color
         //this.padding = 5
     }
 

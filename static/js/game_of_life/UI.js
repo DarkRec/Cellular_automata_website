@@ -8,45 +8,69 @@ class Ui {
         //console.log("konstruktor klasy Ui")
         this.buttons_generate()
         this.sidebar = false
+        $("#game_board")[0].onmousedown = function () {
+            board.select = true
+        }
+        $("#game_board")[0].onmouseup = function () {
+            board.select = false
+        }
     }
 
 
     buttons_generate() {
 
         var img = $(document.createElement('img')).prop({
-            src:'../img/css/colors.png',
-            id:'color'
+            src: '../img/css/colors.png',
+            id: 'color'
         })
 
         img.on("click", function () {
-                if(game.color){            
-                    $("#color")[0].src ='../img/css/white.png'
-                    game.color = false
-                }
-                else{   
-                    $("#color")[0].src ='../img/css/colors.png'
-                    game.color = true
-                }
+            if (game.color) {
+                $("#color")[0].src = '../img/css/white.png'
+                game.color = false
+            }
+            else {
+                $("#color")[0].src = '../img/css/colors.png'
+                game.color = true
+            }
         })
 
         $("#control").append(img)
 
         var img = $(document.createElement('img')).prop({
-            src:'../img/css/sound_off.png',
-            id:'sound'
+            src: '../img/css/sound_off.png',
+            id: 'sound'
         })
 
         img.on("click", function () {
-                if(game.sound){            
-                    $("#sound")[0].src ='../img/css/sound_off.png'
-                    game.sound = false
-                    $("#audio")[0].volume = 0
-                }
-                else{   
-                    $("#sound")[0].src ='../img/css/sound_on.png'
-                    game.sound = true
-                    $("#audio")[0].volume = 0.1
-                }
+            if (game.sound) {
+                $("#sound")[0].src = '../img/css/sound_off.png'
+                game.sound = false
+                $("#audio")[0].volume = 0
+            }
+            else {
+                $("#sound")[0].src = '../img/css/sound_on.png'
+                game.sound = true
+                $("#audio")[0].volume = 0.1
+            }
+        })
+
+        $("#control").append(img)
+
+        var img = $(document.createElement('img')).prop({
+            src: '../img/css/no_border.png',
+            id: 'border'
+        })
+
+        img.on("click", function () {
+            if (game.border_mode) {
+                $("#border")[0].src = '../img/css/no_border.png'
+                game.border_mode = false
+            }
+            else {
+                $("#border")[0].src = '../img/css/border.png'
+                game.border_mode = true
+            }
         })
 
         $("#control").append(img)
@@ -94,10 +118,10 @@ class Ui {
         })
         a.on("click", function () {
             $("#audio")[0].pause()
-            if($("#footer")[0].innerHTML=='')
-            net.Load("glider gun")
-        else
-            net.Load($("#footer")[0].innerHTML)
+            if ($("#footer")[0].innerHTML == '')
+                net.Load("glider gun")
+            else
+                net.Load($("#footer")[0].innerHTML)
         })
         $("#control").append(a)
 
@@ -129,8 +153,22 @@ class Ui {
 
         var input = $(document.createElement('input')).prop({
             type: 'text',
-            placeholder:'nazwa zapisu',
-            id:'export_input'
+            placeholder: 'nazwa zapisu',
+            id: 'export_input'
+        })
+        $("#control").append(input)
+
+        var input = $(document.createElement('input')).prop({
+            type: 'range',
+            id: 'myRange',
+            class: 'slider',
+            min: 25,
+            max: 300,
+            step: 25,
+            value: 150
+        })
+        input.on("change", function () {
+            game.speed = this.value
         })
         $("#control").append(input)
     }
@@ -147,10 +185,6 @@ class Ui {
             id: 'rules'
         })
         $("#rules-sidebar").append(section)
-
-
-
-
 
         for (var r = 0; r < 9; r++) {
             var input = $(document.createElement('input')).prop({
