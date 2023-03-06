@@ -7,7 +7,7 @@ app.use(express.urlencoded({ limit: '50mb', extended: true }))
 app.use(express.static('static'))
 
 //-------------------------------------------------
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 
 app.listen(PORT, function () {
     console.log("start serwera na porcie " + PORT)
@@ -37,37 +37,12 @@ app.use(session({
     saveUninitialized: true
 }));
 
-//-------------------------------------------------
-/*
-const { engine } = require('express-handlebars');
-
-app.set('view engine', 'handlebars');
-app.engine('handlebars', engine({
-    layoutsDir: __dirname + '/views',
-    defaultLayout: 'main',
-    extname: '.handlebars'
-
-}));
-*/
-//-------------------------------------------------
-
 const hbs = require('hbs')
 
 app.set('view engine', 'hbs');
 
 hbs.registerPartials(__dirname + '/views/layouts');
 
-/*
-const { engine } = require('express-handlebars');   
-
-app.engine('handlebars', engine({
-    extname: '.hbs',
-    defaultLayout: "main"
-}));
-app.set('view engine', 'hbs');
-*/
-
-//-------------------------------------------------
 const Datastore = require('nedb')
 
 const baza = new Datastore({
@@ -83,16 +58,6 @@ const rules = new Datastore({
 //-------------------------------------------------
 
 const puppeteer = require("puppeteer");
-
-//-------------------------------------------------
-
-/*
-bodyParser = require('body-parser'),
-app.use(bodyParser.urlencoded({ extended: true }));
-*/
-
-
-//app.use(session({ secret: 'code', cookie: { maxAge: 60000 }}));
 
 //-------------------------------------------------
 
@@ -129,9 +94,6 @@ app.get("/saved", function (req, res) {
             comments: []
         }
     });
-
-    //, { layout: path.join(__dirname + '/views/main') }
-    //res.sendFile(path.join(__dirname + "/static/hb.html"))
 })
 
 app.get("/game", function (req, res) {
@@ -151,11 +113,11 @@ app.get("/:game", function (req, res) {
     }
     res.render('main', {
         home: true,
-        current_game:req.params
+        current_game: req.params
     });
 })
 
-//-------------------------------------------------
+//--------------------------------------------------
 
 //////////    //////////    //////////    //////////
 //      //    //      //    //                //
@@ -168,32 +130,31 @@ app.get("/:game", function (req, res) {
 //-------------------------------------------------
 
 app.post("/save", function (req, res) {                          //save to arrays.db
-    // we're using async/await - so we need an async function, that we can run
     const run = async () => {
         // open the browser and prepare a page
         const browser = await puppeteer.launch()
         const page = await browser.newPage()
-    
+
         // set the size of the viewport, so our screenshot will have the desired size
         await page.setViewport({
             width: 1280,
             height: 800
         })
-    
-        await page.goto('http://localhost:8000/'+req.body.name)
+
+        await page.goto('http://localhost:8000/' + req.body.name)
         await page.screenshot({
-            path: 'static/img/saves/'+req.body.name+'.png',
-            clip: {'x': 140, 'y': 51, 'width': 1000, 'height': 600}
+            path: 'static/img/saves/' + req.body.name + '.png',
+            clip: { 'x': 140, 'y': 51, 'width': 1000, 'height': 600 }
         })
-        
+
         // close the browser 
         await browser.close();
     };
-    
+
     // run the async function
     run();
-    
-    
+
+
     baza.find({}, function (err, docs) {
         var arr = JSON.parse(JSON.stringify(docs))
         var tablica = {

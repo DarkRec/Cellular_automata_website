@@ -153,7 +153,7 @@ class Ui {
 
         var input = $(document.createElement('input')).prop({
             type: 'text',
-            placeholder: 'nazwa zapisu',
+            placeholder: 'Save name',
             id: 'export_input'
         })
         $("#control").append(input)
@@ -178,7 +178,7 @@ class Ui {
         game.rules = arr
 
         var div = $(document.createElement('div')).prop({
-            innerHTML: 'Zasady sąsiedztwa:'
+            innerHTML: 'Neighborhood Rules:'
         })
         $("#rules-sidebar").append(div)
         var section = $(document.createElement('section')).prop({
